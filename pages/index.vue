@@ -1,0 +1,82 @@
+<script setup>
+  const authStore = useAuthStore()
+</script>
+
+<template>
+
+  <Navbar>
+
+    <template v-slot:left>
+      <NavbarLinkLogo link="/">LOGO</NavbarLinkLogo>
+    </template>
+
+    <template v-slot:middle>
+      <NavbarLink link="#home">Home</NavbarLink>
+      <NavbarLink link="#products">Products</NavbarLink>
+    </template>
+
+    <template v-slot:right>
+      <NavbarLink v-if="authStore.getLoginState() == 'true'" link="/logout">Logout</NavbarLink>
+      <NavbarLink v-else link="/login">Login</NavbarLink>
+    </template>
+
+  </Navbar>
+
+  <main>
+    <SectionBelowNavbar id="home">
+      <div class="flex flex-col justify-center items-center gap-y-2 w-full">
+        <h1>Versalearn</h1>
+        <p>Versatile AI ready for assistance</p>
+      </div>
+      <div class="flex flex-row justify-center items-center gap-x-4 w-full">
+        <div>
+          <NuxtLink to="/workbench">
+            <ButtonPrimary>Get Started</ButtonPrimary>
+          </NuxtLink>
+        </div>
+        <div>
+          <ButtonNeutral>
+            <NuxtLink to="#products" class="">About</NuxtLink>
+          </ButtonNeutral>
+        </div>
+      </div>
+    </SectionBelowNavbar>
+
+    <Section id="products">
+
+      <div class="flex flex-col justify-center items-center gap-y-2 w-full">
+        <h2>Products</h2>
+        <p>What Versalearn good at</p>
+      </div>
+
+      <div class="grid auto-cols-fr gap-4 justify-center mx-auto w-full max-w-xs sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 md:max-w-2xl lg:max-w-none">
+
+          <Card
+            imageSrc="/logo/sound.png"
+            imageAlt="voice spectrum icon"
+            title="Voice Clone"
+            desc="Lorem ipsum dolor amet">
+              <ButtonPrimary class="w-40">Visit</ButtonPrimary>
+          </Card>
+
+          <Card
+            imageSrc="/logo/coming-soon.png"
+            imageAlt="coming soon icon"
+            title="Coming Soon"
+            desc="Lorem ipsum dolor amet">
+            <ButtonGhost class="w-40">Not Yet</ButtonGhost>
+          </Card>
+
+          <Card
+            imageSrc="/logo/coming-soon.png"
+            imageAlt="coming soon icon"
+            title="Coming Soon"
+            desc="Lorem ipsum dolor amet">
+            <ButtonGhost class="w-40">Not Yet</ButtonGhost>
+          </Card>
+
+      </div>
+    </Section>
+
+  </main>
+</template>

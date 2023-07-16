@@ -1,0 +1,38 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+:root {
+    --max-screen-width: 80rem;
+    --navbar-height: 4rem;
+}
+
+
+@layer base {
+    html {
+        scroll-behavior: smooth;
+    }
+
+    body {
+        box-sizing: border-box;
+        min-height: 100vh;
+    }
+
+    h1 {
+        @apply text-8xl font-semibold
+    }
+
+    h2 {
+        @apply text-6xl font-semibold
+    }
+
+    h3 {
+        @apply text-3xl font-semibold
+    }
+
+    h4 {
+        @apply text-xl font-semibold
+    }
+
+}
