@@ -1,5 +1,6 @@
 <script setup>
   const { $googleLogout } = useNuxtApp()
+  const userStore = useUserStore()
 
   const isProfileCardOpen = ref(false)
   function openProfileCard() {
@@ -9,7 +10,7 @@
 
 <template>
   <div class="relative self-center">
-    <button @click="openProfileCard" class="h-8 w-8 bg-sky-400 rounded-full"></button>
+    <img @click="openProfileCard" :src="userStore.getPhotoUrl()" class="h-8 w-8 border-1 rounded-full"/>
     <ul
       class="absolute top-14 right-0 p-4 flex flex-col gap-y-2 h-44 w-72 bg-gray-50 border-2 border-gray-200 text-sm"
       :class="{'block': isProfileCardOpen, 'hidden': !isProfileCardOpen}"
