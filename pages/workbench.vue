@@ -50,6 +50,7 @@ function startClone() {
     </Sidebar>
 
     <SectionBelowNavbar id="workbench">
+      <h3>Voice Clone</h3>
       <FormVoiceClone>
         <template v-slot:form-submit>
           <ButtonPrimary @click.prevent="startClone">Clone</ButtonPrimary>
