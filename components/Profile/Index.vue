@@ -1,4 +1,6 @@
 <script setup>
+  const { $googleLogout } = useNuxtApp()
+
   const isProfileCardOpen = ref(false)
   function openProfileCard() {
     isProfileCardOpen.value = !isProfileCardOpen.value
@@ -25,7 +27,7 @@
         <span>10 of 10</span>
       </li>
       <li class="mt-auto ml-auto">
-        <ButtonSecondary>Logout</ButtonSecondary>
+        <ButtonSecondary @click="$googleLogout">Logout</ButtonSecondary>
       </li>
     </ul>
   </div>
