@@ -10,7 +10,9 @@
 
 <template>
   <div class="relative self-center">
-    <img @click="openProfileCard" :src="userStore.getPhotoUrl()" class="h-8 w-8 border-1 rounded-full"/>
+    <client-only>
+      <img @click="openProfileCard" :src="userStore.getPhotoUrl()" class="h-8 w-8 border-1 rounded-full"/>
+    </client-only>
     <ul
       class="absolute top-14 right-0 p-4 flex flex-col gap-y-2 h-44 w-72 bg-gray-50 border-2 border-gray-200 text-sm"
       :class="{'block': isProfileCardOpen, 'hidden': !isProfileCardOpen}"
