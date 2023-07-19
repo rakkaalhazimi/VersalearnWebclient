@@ -1,6 +1,4 @@
 <script setup>
-const { $googleLogout } = useNuxtApp()
-
 // Sidebar open/close logic
 const isSidebarOpen = ref(false)
 function openSidebar() {
@@ -44,9 +42,6 @@ function startClone() {
         <SidebarLink link="/" value="Coming Soon"></SidebarLink>
       </template>
 
-      <template v-slot:bottom-link>
-        <SidebarLink @click="$googleLogout" value="Logout" class="cursor-pointer"></SidebarLink>
-      </template>
     </Sidebar>
 
     <SectionBelowNavbar id="workbench">
