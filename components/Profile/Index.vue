@@ -1,0 +1,32 @@
+<script setup>
+  const isProfileCardOpen = ref(false)
+  function openProfileCard() {
+    isProfileCardOpen.value = !isProfileCardOpen.value
+  }
+</script>
+
+<template>
+  <div class="relative self-center">
+    <button @click="openProfileCard" class="h-8 w-8 bg-sky-400 rounded-full"></button>
+    <ul
+      class="absolute top-14 right-0 p-4 flex flex-col gap-y-2 h-44 w-72 bg-gray-50 border-2 border-gray-200 text-sm"
+      :class="{'block': isProfileCardOpen, 'hidden': !isProfileCardOpen}"
+    >
+      <li class="grid grid-cols-2">
+        <span>Name</span>
+        <span>Rakka</span>
+      </li>
+      <li class="grid grid-cols-2">
+        <span>Packet</span>
+        <span>Free</span>
+      </li>
+      <li class="grid grid-cols-2">
+        <span>Quota</span>
+        <span>10 of 10</span>
+      </li>
+      <li class="mt-auto ml-auto">
+        <ButtonSecondary>Logout</ButtonSecondary>
+      </li>
+    </ul>
+  </div>
+</template>

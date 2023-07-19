@@ -16,7 +16,7 @@
     </template>
 
     <template v-slot:right>
-      <NavbarLink v-if="authStore.getLoginState() == 'true'" link="/logout">Logout</NavbarLink>
+      <Profile v-if="authStore.getLoginState() == 'true'"></Profile>
       <NavbarLink v-else link="/login">Login</NavbarLink>
     </template>
 

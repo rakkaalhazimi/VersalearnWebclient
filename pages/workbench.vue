@@ -27,6 +27,10 @@ function startClone() {
         <font-awesome-icon icon="fa-solid fa-bars" />
       </button>
     </template>
+
+    <template v-slot:right>
+      <Profile></Profile>
+    </template>
   </Navbar>
 
   <main class="relative">
