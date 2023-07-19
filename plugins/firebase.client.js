@@ -5,6 +5,9 @@ import { getAnalytics } from "firebase/analytics";
 
 
 export default defineNuxtPlugin(nuxtApp => {
+
+    const userStore = useUserStore()
+
     // TODO: Add SDKs for Firebase products that you want to use
     // https://firebase.google.com/docs/web/setup#available-libraries
 
@@ -35,6 +38,9 @@ export default defineNuxtPlugin(nuxtApp => {
                 // const credential = GoogleAuthProvider.credentialFromResult(result);
                 const idTokenCookie = useCookie("idToken", {sameSite: true, maxAge: 60 * 60})
 
+                const user = result.user
+                userStore.setPhotoUrl(user.photoURL)
+
                 // ID Token must be acquired from auth object
                 // ref: https://stackoverflow.com/questions/38335127/firebase-auth-id-token-has-incorrect-aud-claim
                 idTokenCookie.value = await auth.currentUser.getIdToken()
@@ -44,6 +50,9 @@ export default defineNuxtPlugin(nuxtApp => {
                 // Handle Errors here.
                 const errorCode = error.code;
                 const errorMessage = error.message;
+
+                userStore.$reset()
+
                 return navigateTo("/login")
             })
 
