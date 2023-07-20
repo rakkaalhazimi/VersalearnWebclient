@@ -4,7 +4,6 @@ export const useUserStore = defineStore("user", () => {
     const photoUrl = ref("")
     function getPhotoUrl() {
         if (process.client) {
-            console.log("client: ", localStorage.getItem("photoUrl"))
             return localStorage.getItem("photoUrl") || photoUrl.value
         }
         return photoUrl.value
