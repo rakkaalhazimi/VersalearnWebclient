@@ -1,19 +1,16 @@
 export const useUserStore = defineStore("user", () => {
 
     // User Profile
-    const photoUrl = ref("")
-    function getPhotoUrl() {
-        if (process.client) {
-            return localStorage.getItem("photoUrl") || photoUrl.value
-        }
-        return photoUrl.value
+    const userKey = "userName"
+    const photoUrlKey = "photoUrl"
+    
+    const name = computed(() => sessionStorage.getItem(userKey))
+    const photoUrl = computed(() => sessionStorage.getItem(photoUrlKey))
+    
+    function setUserProfile({name, photoUrl}) {
+        sessionStorage.setItem(userKey, name)
+        sessionStorage.setItem(photoUrlKey, photoUrl)
     }
-    function setPhotoUrl(url) {
-        photoUrl.value = url
-        if (process.client) {
-            localStorage.setItem("photoUrl", url)
-        }
-    }
-
-    return {getPhotoUrl, setPhotoUrl}
+    
+    return {name, photoUrl, setUserProfile}
 })

@@ -37,10 +37,7 @@ export default defineNuxtPlugin(nuxtApp => {
                 // This gives you a Google Access Token. You can use it to access the Google API.
                 // const credential = GoogleAuthProvider.credentialFromResult(result);
                 const idTokenCookie = useCookie("idToken", {sameSite: true, maxAge: 60 * 60})
-
-                const user = result.user
-                userStore.setPhotoUrl(user.photoURL)
-
+                
                 // ID Token must be acquired from auth object
                 // ref: https://stackoverflow.com/questions/38335127/firebase-auth-id-token-has-incorrect-aud-claim
                 idTokenCookie.value = await auth.currentUser.getIdToken()
@@ -69,6 +66,7 @@ export default defineNuxtPlugin(nuxtApp => {
     onAuthStateChanged(auth, async (user) => {
         if (user) {
             // Do something
+            userStore.setUserProfile({name: user.displayName, photoUrl: user.photoURL})
         } else {
             console.log("Logout")
         }
