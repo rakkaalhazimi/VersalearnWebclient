@@ -16,6 +16,10 @@ export default defineNuxtConfig({
     public: {
       // General configuration
       runMode: "",
+      githubLink: "",
+      twitterLink: "",
+      instagramLink: "",
+      linkedinLink: "",
 
       // Firebase client
       apiKey: "",
