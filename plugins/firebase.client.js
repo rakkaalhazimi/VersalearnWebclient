@@ -1,6 +1,12 @@
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
-import { getAuth, GoogleAuthProvider, signInWithPopup, onAuthStateChanged, signOut } from "firebase/auth";
+import { 
+    getAuth, GoogleAuthProvider, 
+    createUserWithEmailAndPassword, 
+    signInWithPopup, signInWithEmailAndPassword, 
+    onAuthStateChanged, 
+    signOut 
+} from "firebase/auth";
 import { getAnalytics } from "firebase/analytics";
 
 
@@ -29,6 +35,47 @@ export default defineNuxtPlugin(nuxtApp => {
     const auth = getAuth(app)
     const provider = new GoogleAuthProvider()
     const analytics = getAnalytics(app);
+    
+    
+    function emailPasswordRegister(email, password, verifyPassword) {
+        console.log("Register")
+        console.log(email, password, verifyPassword)
+        if (password != verifyPassword) return
+        createUserWithEmailAndPassword(auth, email, password)
+            .then((userCredential) => {
+                const user = userCredential.user
+                console.log("Registered user: ")
+                console.log(user)
+            })
+            
+            .catch((error) => {
+                // Handle Errors here.
+                const errorCode = error.code;
+                const errorMessage = error.message;
+                console.log(errorCode, errorMessage)
+                
+                // userStore.$reset()
+                
+                return navigateTo("/register")
+            })
+    }
+    
+    function emailPasswordLogin(email, password) {
+        signInWithEmailAndPassword(auth, email, password)
+            .then((userCredential) => {
+                
+            })
+            
+            .catch((error) => {
+                // Handle Errors here.
+                const errorCode = error.code;
+                const errorMessage = error.message;
+                
+                userStore.$reset()
+                
+                return navigateTo("/login")
+            })
+    }
 
 
     function googleLogin() {
@@ -74,4 +121,5 @@ export default defineNuxtPlugin(nuxtApp => {
 
     nuxtApp.provide("googleLogin", googleLogin)
     nuxtApp.provide("googleLogout", googleLogout)
+    nuxtApp.provide("emailPasswordRegister", emailPasswordRegister)
 })
