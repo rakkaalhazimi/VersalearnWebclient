@@ -49,9 +49,14 @@ function startClone() {
       <h3>Voice Clone</h3>
       <form>
         <div class="flex flex-col gap-y-8">
-          <div class="flex flex-col">
+          <!-- <div class="flex flex-col">
             <label class="mb-2" for="voice-clone-transcript">Transcript</label>
             <InputTextArea name="voice-clone-transcript"></InputTextArea>
+          </div> -->
+          
+          <!-- <div class="grid grid-cols-[repeat(auto-fill,20rem)] gap-x-2"> -->
+          <div class="grid grid-flow-col-dense gap-x-2 overflow-scroll">
+            <CardVoiceCharacter v-for="index in 10" :key="index"></CardVoiceCharacter>
           </div>
           
           <div class="flex flex-col">
