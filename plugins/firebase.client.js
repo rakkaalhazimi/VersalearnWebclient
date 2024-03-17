@@ -62,16 +62,24 @@ export default defineNuxtPlugin(nuxtApp => {
     
     function emailPasswordLogin(email, password) {
         signInWithEmailAndPassword(auth, email, password)
-            .then((userCredential) => {
+            .then(async (userCredential) => {
+                // This gives you a Google Access Token. You can use it to access the Google API.
+                // const credential = GoogleAuthProvider.credentialFromResult(result);
+                const idTokenCookie = useCookie("idToken", {sameSite: true, maxAge: 60 * 60})
                 
+                // ID Token must be acquired from auth object
+                // ref: https://stackoverflow.com/questions/38335127/firebase-auth-id-token-has-incorrect-aud-claim
+                idTokenCookie.value = await auth.currentUser.getIdToken()
+                return navigateTo("/workbench")
             })
             
             .catch((error) => {
                 // Handle Errors here.
                 const errorCode = error.code;
                 const errorMessage = error.message;
+                console.log(errorCode, errorMessage)
                 
-                userStore.$reset()
+                // userStore.$reset()
                 
                 return navigateTo("/login")
             })

@@ -1,5 +1,13 @@
 <script setup>
-const { $googleLogin } = useNuxtApp()
+const { $googleLogin, $emailPasswordLogin } = useNuxtApp()
+
+let username = ref("")
+let password = ref("")
+function login() {
+  // console.log("username: ", username.value)
+  // console.log("password: ", password.value)
+  $emailPasswordLogin(username.value, password.value)
+}
 </script>
 
 
@@ -18,9 +26,9 @@ const { $googleLogin } = useNuxtApp()
         </div>
         <div class="flex flex-col gap-y-8">
           <form class="flex flex-col gap-y-2">
-            <InputText placeholder="Username"></InputText>
-            <InputPassword placeholder="Password"></InputPassword>
-            <ButtonSecondary>Login</ButtonSecondary>
+            <InputText v-model="username" placeholder="Username"></InputText>
+            <InputPassword v-model="password" placeholder="Password"></InputPassword>
+            <ButtonSecondary @click.prevent="login">Login</ButtonSecondary>
           </form>
           <div>
             <p>Don't have an account? <NuxtLink to="/register">register here</NuxtLink>

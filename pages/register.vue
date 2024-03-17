@@ -1,5 +1,17 @@
 <script setup>
-const { $googleLogin } = useNuxtApp()
+  const { $emailPasswordRegister } = useNuxtApp()
+  
+  let username = ref("")
+  let password = ref("")
+  let verifyPassword = ref("")
+
+  function register() {
+    // console.log("username: ", username.value)
+    // console.log("password: ", password.value)
+    // console.log("verifyPassword: ", verifyPassword.value)
+    $emailPasswordRegister(username.value, password.value, verifyPassword.value)
+  }
+
 </script>
 
 
@@ -16,10 +28,10 @@ const { $googleLogin } = useNuxtApp()
         <h3>Register</h3>
         <form class="flex flex-col gap-y-8">
           <div class="flex flex-col gap-y-2">
-            <InputText placeholder="Username"></InputText>
-            <InputPassword placeholder="Password"></InputPassword>
-            <InputPassword placeholder="Verify Password"></InputPassword>
-            <ButtonSecondary>Register</ButtonSecondary>
+            <InputText v-model="username" placeholder="Username"></InputText>
+            <InputPassword v-model="password" placeholder="Password"></InputPassword>
+            <InputPassword v-model="verifyPassword" placeholder="Verify Password"></InputPassword>
+            <ButtonSecondary @click.prevent="register">Register</ButtonSecondary>
           </div>
         </form>
       </div>
