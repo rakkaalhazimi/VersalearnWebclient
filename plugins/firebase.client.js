@@ -122,4 +122,5 @@ export default defineNuxtPlugin(nuxtApp => {
     nuxtApp.provide("googleLogin", googleLogin)
     nuxtApp.provide("googleLogout", googleLogout)
     nuxtApp.provide("emailPasswordRegister", emailPasswordRegister)
+    nuxtApp.provide("emailPasswordLogin", emailPasswordLogin)
 })
