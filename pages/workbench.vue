@@ -24,6 +24,7 @@ function startClone() {
       <button @click="openSidebar">
         <font-awesome-icon icon="fa-solid fa-bars" />
       </button>
+      <NavbarLinkLogo link="/">Versalearn</NavbarLinkLogo>
     </template>
 
     <template v-slot:right>

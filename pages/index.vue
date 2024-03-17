@@ -7,7 +7,7 @@
   <Navbar>
 
     <template v-slot:left>
-      <NavbarLinkLogo link="/">LOGO</NavbarLinkLogo>
+      <NavbarLinkLogo link="/">Versalearn</NavbarLinkLogo>
     </template>
 
     <template v-slot:middle>
