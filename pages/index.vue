@@ -23,7 +23,7 @@
   </Navbar>
 
   <main>
-    <SectionBelowNavbar id="home">
+    <SectionHero id="home">
       <div class="flex flex-col justify-center items-center gap-y-2 w-full">
         <h1>Versalearn</h1>
         <p>Versatile AI ready for assistance</p>
@@ -40,7 +40,7 @@
           </ButtonNeutral>
         </div>
       </div>
-    </SectionBelowNavbar>
+    </SectionHero>
 
     <Section id="products">
 
