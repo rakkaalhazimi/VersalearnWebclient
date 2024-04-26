@@ -121,7 +121,11 @@ export default defineNuxtPlugin(nuxtApp => {
   onAuthStateChanged(auth, async (user) => {
     if (user) {
       // Do something
-      userStore.setUserProfile({ pName: user.displayName, pPhotoUrl: user.photoURL })
+      userStore.setUserProfile({ 
+        pName: user.displayName, 
+        pPhotoUrl: user.photoURL, 
+        pEmail: user.email 
+      })
     } else {
       console.log("Logout")
     }

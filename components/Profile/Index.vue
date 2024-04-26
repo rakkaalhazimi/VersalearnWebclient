@@ -19,7 +19,8 @@
     >
       <li class="grid grid-cols-2">
         <span>Name</span>
-          <span>{{ userStore.name }}</span>
+          <span v-if="userStore.name">{{ userStore.name }}</span>
+          <span v-else>{{ userStore.email }}</span>
       </li>
       <li class="grid grid-cols-2">
         <span>Packet</span>
