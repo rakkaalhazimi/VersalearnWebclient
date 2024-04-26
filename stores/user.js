@@ -6,11 +6,12 @@ export const useUserStore = defineStore("user", () => {
 
   const name = ref("")
   const photoUrl = ref("")
+  const genericPhotoUrl = ref("/assets/logo/user-generic.png")
 
   function setUserProfile({ pName, pPhotoUrl }) {
     name.value = pName
     photoUrl.value = pPhotoUrl
   }
 
-  return { name, photoUrl, setUserProfile }
+  return { name, photoUrl, genericPhotoUrl, setUserProfile }
 })
