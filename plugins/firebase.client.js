@@ -110,7 +110,7 @@ export default defineNuxtPlugin(nuxtApp => {
 
   }
 
-  function googleLogout() {
+  function logout() {
     signOut(auth).then(() => {
       const idTokenCookie = useCookie("idToken")
       idTokenCookie.value = null
@@ -128,7 +128,7 @@ export default defineNuxtPlugin(nuxtApp => {
   })
 
   nuxtApp.provide("googleLogin", googleLogin)
-  nuxtApp.provide("googleLogout", googleLogout)
+  nuxtApp.provide("logout", logout)
   nuxtApp.provide("emailPasswordRegister", emailPasswordRegister)
   nuxtApp.provide("emailPasswordLogin", emailPasswordLogin)
 })

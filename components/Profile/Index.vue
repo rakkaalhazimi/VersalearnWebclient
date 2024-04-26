@@ -1,5 +1,5 @@
 <script setup>
-  const { $googleLogout } = useNuxtApp()
+  const { $logout } = useNuxtApp()
   const userStore = useUserStore()
 
   const isProfileCardOpen = ref(false)
@@ -29,7 +29,7 @@
         <span>10 of 10</span>
       </li>
       <li class="mt-auto ml-auto">
-        <ButtonSecondary @click="$googleLogout">Logout</ButtonSecondary>
+        <ButtonSecondary @click="$logout">Logout</ButtonSecondary>
       </li>
     </ul>
   </div>
