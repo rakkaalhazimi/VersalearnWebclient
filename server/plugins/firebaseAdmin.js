@@ -23,13 +23,13 @@ const appName = "admin"
 const adminApp = initializeApp({ credential: cert(credential) }, appName)  // Pass appName to initialize multiple app
 const adminAuth = getAuth(adminApp)
 
-async function verifyGoogleUser(idToken) {
+async function verifyUser(idToken) {
   const response = await adminAuth
     .verifyIdToken(idToken, false)
     .then(decodedToken => {
       return {
         status: 200,
-        context: { code: "firebase/googleLogin", message: "success" },
+        context: { code: "firebase/verify-user", message: "success" },
         content: {}
       }
     })
@@ -43,5 +43,5 @@ async function verifyGoogleUser(idToken) {
   return response
 }
 export default defineNitroPlugin(nitroApp => {
-  nitroApp.$verifyGoogleUser = verifyGoogleUser
+  nitroApp.$verifyUser = verifyUser
 })

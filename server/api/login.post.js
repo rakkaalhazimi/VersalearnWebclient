@@ -1,9 +1,9 @@
 export default defineEventHandler(async (event) => {
-  const { $verifyGoogleUser } = useNitroApp()
+  const { $verifyUser } = useNitroApp()
 
   const cookies = parseCookies(event)
   const idToken = cookies.idToken ? cookies.idToken : ""
-  const response = await $verifyGoogleUser(idToken)
+  const response = await $verifyUser(idToken)
 
   return response
 })
