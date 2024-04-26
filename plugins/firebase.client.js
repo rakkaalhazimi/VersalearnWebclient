@@ -44,8 +44,8 @@ export default defineNuxtPlugin(nuxtApp => {
     createUserWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
         const user = userCredential.user
-        console.log("Registered user: ")
-        console.log(user)
+        // console.log("Registered user: ")
+        // console.log(user)
       })
 
       .catch((error) => {
