@@ -6,8 +6,15 @@ let password = ref("")
 let toasts = ref([])
 let toastCount = ref(0)
 
+
 function closeToaster() {
   toasts.value = []
+}
+
+function addToaster(message) {
+  closeToaster()
+  toasts.value.push({count: toastCount.value, message: message})
+  toastCount.value++
 }
 
 async function login() {
@@ -16,9 +23,7 @@ async function login() {
   
   // User didn't enter username or password
   if (username.value.length == 0 || password.value.length == 0) {
-    closeToaster()
-    toasts.value.push({count: toastCount.value, message: "Username/password can't be empty"})
-    toastCount.value++
+    addToaster("Username/password can't be empty")
     return
   }
   
@@ -32,9 +37,7 @@ async function login() {
   } else {
     // Show toaster if login failed
     console.log("Login failed")
-    closeToaster()
-    toasts.value.push({count: toastCount.value, message: "Invalid username/password"})
-    toastCount.value++
+    addToaster("Invalid username/password")
   }
 }
 </script>
