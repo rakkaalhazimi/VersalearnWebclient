@@ -55,7 +55,7 @@
             imageSrc="/logo/sound.png"
             imageAlt="voice spectrum icon"
             title="Voice Clone"
-            desc="Lorem ipsum dolor amet">
+            desc="Clone your favorite characters from anime/game">
               <ButtonPrimary class="w-40">Visit</ButtonPrimary>
           </Card>
 
@@ -63,7 +63,7 @@
             imageSrc="/logo/coming-soon.png"
             imageAlt="coming soon icon"
             title="Coming Soon"
-            desc="Lorem ipsum dolor amet">
+            desc="Let it be secret">
             <ButtonGhost class="w-40">Not Yet</ButtonGhost>
           </Card>
 
@@ -71,7 +71,7 @@
             imageSrc="/logo/coming-soon.png"
             imageAlt="coming soon icon"
             title="Coming Soon"
-            desc="Lorem ipsum dolor amet">
+            desc="Let it be secret">
             <ButtonGhost class="w-40">Not Yet</ButtonGhost>
           </Card>
 
