@@ -27,18 +27,18 @@ async function verifyUser(idToken) {
   const response = await adminAuth
     .verifyIdToken(idToken, false)
     .then(decodedToken => {
-      return {
+      const response = {
         status: 200,
-        context: { code: "firebase/verify-user", message: "success" },
-        content: {}
+        content: {code: "firebase/verify-user", message: "user is verified"},
       }
+      return response
     })
     .catch(error => {
-      return {
-        status: 500,
-        context: { code: error.code, message: error.message },
-        content: {}
+      const response = {
+        status: 401,
+        content: {code: error.code, message: error.message},
       }
+      return response
     })
   return response
 }

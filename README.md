@@ -90,7 +90,6 @@ The code execution order in nuxt application:
 ## Response Structure
 Main structure of response contains serveral main keys:
 - `status` - HTTP Status Code
-- `context` - Informations about current request
 - `content` - Body of the response
 
 ```typescript
