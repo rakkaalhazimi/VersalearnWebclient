@@ -3,10 +3,30 @@ const { $googleLogin, $emailPasswordLogin } = useNuxtApp()
 
 let username = ref("")
 let password = ref("")
-function login() {
+let toasts = ref([])
+let toastCount = ref(0)
+
+function closeToaster() {
+  toasts.value = []
+}
+
+async function login() {
   // console.log("username: ", username.value)
   // console.log("password: ", password.value)
-  $emailPasswordLogin(username.value, password.value)
+  let response = await $emailPasswordLogin(username.value, password.value)
+  
+  // console.log(response.status)
+  if (response.status <= 299) {
+    console.log("Login Success")
+    navigateTo("/workbench")
+    
+  } else {
+    // Show toaster if login failed
+    console.log("Login failed")
+    closeToaster()
+    toasts.value.push({count: toastCount.value, message: "Invalid username/password"})
+    toastCount.value++
+  }
 }
 </script>
 
@@ -40,6 +60,25 @@ function login() {
           </ButtonNeutral>
         </div>
       </div>
+      
+      <!-- Toaster -->
+      <template v-for="toast in toasts" :key="toast.count">
+        <ToasterLoginError>
+          
+          <template v-slot:content>
+            {{toast.message}}
+          </template>
+          
+          <template v-slot:close>
+            <button @click="closeToaster">
+              <font-awesome-icon icon="fa-solid fa-xmark" />
+            </button>
+          </template>
+          
+        </ToasterLoginError>
+      </template>
+      
+      
     </SectionBelowNavbar>
   </main>
 </template>

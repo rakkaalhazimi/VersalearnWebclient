@@ -60,7 +60,33 @@ export default defineNuxtPlugin(nuxtApp => {
       })
   }
 
-  function emailPasswordLogin(email, password) {
+  async function emailPasswordLogin(email, password) {
+    try {
+      const userCredential = await signInWithEmailAndPassword(auth, email, password);
+      // This gives you a Google Access Token. You can use it to access the Google API.
+      // const credential = GoogleAuthProvider.credentialFromResult(result);
+      const idTokenCookie = useCookie("idToken", { sameSite: true, maxAge: 60 * 60 })
+      // ID Token must be acquired from auth object
+      // ref: https://stackoverflow.com/questions/38335127/firebase-auth-id-token-has-incorrect-aud-claim
+      idTokenCookie.value = await auth.currentUser.getIdToken()
+
+      const response = {
+        status: 200,
+        content: { code: "firebase/email-login", message: "login success" },
+      }
+      // console.log(response)
+      return response
+
+    } catch (error) {
+      const response = {
+        status: 401,
+        content: { code: error.code, message: error.message },
+      }
+      console.log(response)
+      return response
+    }
+
+
     signInWithEmailAndPassword(auth, email, password)
       .then(async (userCredential) => {
         // This gives you a Google Access Token. You can use it to access the Google API.
@@ -86,28 +112,53 @@ export default defineNuxtPlugin(nuxtApp => {
   }
 
 
-  function googleLogin() {
-    signInWithPopup(auth, provider)
-      .then(async (result) => {
-        // This gives you a Google Access Token. You can use it to access the Google API.
-        // const credential = GoogleAuthProvider.credentialFromResult(result);
-        const idTokenCookie = useCookie("idToken", { sameSite: true, maxAge: 60 * 60 })
+  async function googleLogin() {
+    try {
+      const userCredential = await signInWithEmailAndPassword(auth, email, password);
+      // This gives you a Google Access Token. You can use it to access the Google API.
+      // const credential = GoogleAuthProvider.credentialFromResult(result);
+      const idTokenCookie = useCookie("idToken", { sameSite: true, maxAge: 60 * 60 })
+      // ID Token must be acquired from auth object
+      // ref: https://stackoverflow.com/questions/38335127/firebase-auth-id-token-has-incorrect-aud-claim
+      idTokenCookie.value = await auth.currentUser.getIdToken()
 
-        // ID Token must be acquired from auth object
-        // ref: https://stackoverflow.com/questions/38335127/firebase-auth-id-token-has-incorrect-aud-claim
-        idTokenCookie.value = await auth.currentUser.getIdToken()
-        return navigateTo("/workbench")
+      const response = {
+        status: 200,
+        content: { code: "firebase/google-login", message: "login success" },
+      }
+      // console.log(response)
+      return response
 
-      }).catch((error) => {
-        // Handle Errors here.
-        const errorCode = error.code;
-        const errorMessage = error.message;
+    } catch (error) {
+      const response = {
+        status: 500,
+        content: { code: error.code, message: error.message },
+      }
+      // console.log(response)
+      return response
 
-        userStore.$reset()
+      signInWithPopup(auth, provider)
+        .then(async (result) => {
+          // This gives you a Google Access Token. You can use it to access the Google API.
+          // const credential = GoogleAuthProvider.credentialFromResult(result);
+          const idTokenCookie = useCookie("idToken", { sameSite: true, maxAge: 60 * 60 })
 
-        return navigateTo("/login")
-      })
+          // ID Token must be acquired from auth object
+          // ref: https://stackoverflow.com/questions/38335127/firebase-auth-id-token-has-incorrect-aud-claim
+          idTokenCookie.value = await auth.currentUser.getIdToken()
+          return navigateTo("/workbench")
 
+        }).catch((error) => {
+          // Handle Errors here.
+          const errorCode = error.code;
+          const errorMessage = error.message;
+
+          userStore.$reset()
+
+          return navigateTo("/login")
+        })
+
+    }
   }
 
   function logout() {
