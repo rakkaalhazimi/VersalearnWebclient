@@ -3,27 +3,15 @@ const { $googleLogin, $emailPasswordLogin } = useNuxtApp()
 
 let username = ref("")
 let password = ref("")
-let toasts = ref([])
-let toastCount = ref(0)
-
-
-function closeToaster() {
-  toasts.value = []
-}
-
-function addToaster(message) {
-  closeToaster()
-  toasts.value.push({count: toastCount.value, message: message})
-  toastCount.value++
-}
+let toastStore = useToastStore()
 
 async function login() {
   // console.log("username: ", username.value)
   // console.log("password: ", password.value)
   
-  // User didn't enter username or password
+  // If user didn't enter username or password, send error toast
   if (username.value.length == 0 || password.value.length == 0) {
-    addToaster("Username/password can't be empty")
+    toastStore.addToast("Username/password can't be empty")
     return
   }
   
@@ -37,7 +25,7 @@ async function login() {
   } else {
     // Show toaster if login failed
     console.log("Login failed")
-    addToaster("Invalid username/password")
+    toastStore.addToast("Invalid username/password")
   }
 }
 </script>
@@ -74,15 +62,16 @@ async function login() {
       </div>
       
       <!-- Toaster -->
-      <template v-for="toast in toasts" :key="toast.count">
+      <template v-for="toast in toastStore.getToast()">
         <ToasterLoginError>
           
           <template v-slot:content>
             {{toast.message}}
+            <!-- {{ toast }} -->
           </template>
           
           <template v-slot:close>
-            <button @click="closeToaster">
+            <button @click="toastStore.clearToast()">
               <font-awesome-icon icon="fa-solid fa-xmark" />
             </button>
           </template>
