@@ -82,7 +82,7 @@ export default defineNuxtPlugin(nuxtApp => {
         status: 401,
         content: { code: error.code, message: error.message },
       }
-      console.log(response)
+      // console.log(response)
       return response
     }
   }
