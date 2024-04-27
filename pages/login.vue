@@ -13,6 +13,15 @@ function closeToaster() {
 async function login() {
   // console.log("username: ", username.value)
   // console.log("password: ", password.value)
+  
+  // User didn't enter username or password
+  if (username.value.length == 0 || password.value.length == 0) {
+    closeToaster()
+    toasts.value.push({count: toastCount.value, message: "Username/password can't be empty"})
+    toastCount.value++
+    return
+  }
+  
   let response = await $emailPasswordLogin(username.value, password.value)
   
   // console.log(response.status)
