@@ -15,7 +15,7 @@
     </div>
     <div class="flex flex-col justify-center items-center h-1/3">
       <h4>{{ title }}</h4>
-      <p class="mb-5">{{ desc }}</p>
+      <p class="mb-5 text-center">{{ desc }}</p>
       <slot></slot>
     </div>
   </div>
