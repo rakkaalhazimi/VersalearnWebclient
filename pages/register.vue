@@ -64,6 +64,11 @@
             <ButtonSecondary @click.prevent="register">Register</ButtonSecondary>
           </div>
         </form>
+        <p>Already have an account? 
+          <NuxtLink to="/login">
+            <span class="text-emerald-500 hover:text-emerald-600">login here</span>
+          </NuxtLink>
+        </p>
       </div>
       
       <!-- Toaster -->
