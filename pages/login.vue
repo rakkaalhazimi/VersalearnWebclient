@@ -51,7 +51,10 @@ async function login() {
             <ButtonSecondary @click.prevent="login">Login</ButtonSecondary>
           </form>
           <div>
-            <p>Don't have an account? <NuxtLink to="/register">register here</NuxtLink>
+            <p>Don't have an account? 
+              <NuxtLink to="/register">
+                <span class="text-emerald-500 hover:text-emerald-600">register here</span>
+              </NuxtLink>
             </p>
           </div>
           <ButtonNeutral @click="$googleLogin" class="flex items-center gap-x-4 mx-auto">
