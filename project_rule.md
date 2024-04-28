@@ -26,3 +26,7 @@ Create a component if you meet these cases:
   - Dark text - `text-gray-50`
   - Disabled/Dim text - `text-gray-500`
   - Any hover color is a 100 difference from the normal color. Ex: `text-gray-100 hover:text-gray-200`
+  
+# HTML Tag
+- Div must contain more than one tag, else just write the tag.
+- If container is exist (like form), don't wrap the children with div.
