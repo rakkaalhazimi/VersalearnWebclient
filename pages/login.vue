@@ -52,13 +52,11 @@ async function login() {
             <InputPassword v-model="password" placeholder="Password"></InputPassword>
             <ButtonSecondary @click.prevent="login">Login</ButtonSecondary>
           </form>
-          <div>
-            <p>Don't have an account? 
-              <NuxtLink to="/register">
-                <span class="text-emerald-500 hover:text-emerald-600">register here</span>
-              </NuxtLink>
-            </p>
-          </div>
+          <p>Don't have an account? 
+            <NuxtLink to="/register">
+              <span class="text-emerald-500 hover:text-emerald-600">register here</span>
+            </NuxtLink>
+          </p>
           <ButtonNeutral @click="$googleLogin" class="flex items-center gap-x-4 mx-auto">
             <font-awesome-icon icon="fa-brands fa-google"></font-awesome-icon>
             <span class="flex align-middle">Login with Google</span>
