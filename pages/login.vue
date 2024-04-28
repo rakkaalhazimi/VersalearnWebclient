@@ -3,7 +3,9 @@ const { $googleLogin, $emailPasswordLogin } = useNuxtApp()
 
 let username = ref("")
 let password = ref("")
+
 let toastStore = useToastStore()
+
 
 async function login() {
   // console.log("username: ", username.value)
