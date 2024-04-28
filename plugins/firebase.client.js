@@ -4,6 +4,7 @@ import {
   getAuth, GoogleAuthProvider,
   createUserWithEmailAndPassword,
   signInWithPopup, signInWithEmailAndPassword,
+  AuthErrorCodes,
   onAuthStateChanged,
   signOut
 } from "firebase/auth";
@@ -35,29 +36,36 @@ export default defineNuxtPlugin(nuxtApp => {
   const auth = getAuth(app)
   const provider = new GoogleAuthProvider()
   const analytics = getAnalytics(app);
+  
+  
+  
+  const registrationErrorMapper = new Map()
+  registrationErrorMapper.set(AuthErrorCodes.INVALID_EMAIL, "Email format is invalid")
+  registrationErrorMapper.set(AuthErrorCodes.EMAIL_EXISTS, "Email is already exist")
 
 
-  function emailPasswordRegister(email, password, verifyPassword) {
-    console.log("Register")
-    console.log(email, password, verifyPassword)
-    if (password != verifyPassword) return
-    createUserWithEmailAndPassword(auth, email, password)
-      .then((userCredential) => {
-        const user = userCredential.user
-        // console.log("Registered user: ")
-        // console.log(user)
-      })
-
-      .catch((error) => {
-        // Handle Errors here.
-        const errorCode = error.code;
-        const errorMessage = error.message;
-        console.log(errorCode, errorMessage)
-
-        // userStore.$reset()
-
-        return navigateTo("/register")
-      })
+  async function emailPasswordRegister(email, password) {
+    // console.log("Register")
+    // console.log(email, password, verifyPassword)
+    try {
+      const userCredential = await createUserWithEmailAndPassword(auth, email, password)
+      const user = userCredential.user
+      const response = {
+        status: 200,
+        content: { code: "firebase/email-register", message: "registration success" },
+      }
+      // console.log(response)
+      return response
+    
+    } catch(error) {
+      const errorMessage = registrationErrorMapper.get(error.code) ?? "An error has occured"
+      const response = {
+        status: 400,
+        content: { code: error.code, message: errorMessage },
+      }
+      // console.log(response)
+      return response
+    }
   }
 
   async function emailPasswordLogin(email, password) {
