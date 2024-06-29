@@ -3,9 +3,13 @@ export const useAuthStore = defineStore("auth", () => {
   // Login state
   const isLogin = ref("false")
 
-  function setLoginState(condition) {
-    isLogin.value = condition
+  function setLoginTrue() {
+    isLogin.value = "true";
+  }
+  
+  function setLoginFalse() {
+    isLogin.value = "false";
   }
 
-  return { isLogin, setLoginState }
+  return { isLogin, setLoginTrue, setLoginFalse }
 })

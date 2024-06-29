@@ -14,10 +14,10 @@ export default defineNuxtRouteMiddleware(async (to, from) => {
   data.value.status = config.public.runMode == "test" ? 200 : data.value.status
 
   if (data.value.status > 299) {
-    authStore.setLoginState("false")
+    authStore.setLoginFalse();
     return redirectUnauthorizedUser(to.name)
   } else {
-    authStore.setLoginState("true")
+    authStore.setLoginTrue();
     return
   }
 })
