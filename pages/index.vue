@@ -1,5 +1,6 @@
 <script setup>
-  const { isLogin } = useAuthStore()
+  // const { isLogin } = useAuthStore();
+  let isLogin = 'true';
 </script>
 
 <template>

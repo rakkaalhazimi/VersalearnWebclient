@@ -1,46 +1,50 @@
 <script setup>
-  const { $emailPasswordRegister } = useNuxtApp()
+  // const { $emailPasswordRegister } = useNuxtApp()
   
   let username = ref("")
   let password = ref("")
   let verifyPassword = ref("")
   
   let toastStore = useToastStore()
-
+  
   async function register() {
-    // console.log("username: ", username.value)
-    // console.log("password: ", password.value)
-    // console.log("verifyPassword: ", verifyPassword.value)
     
-    // If user didn't enter username or password, send error toast
-    if (username.value.length == 0 || password.value.length == 0) {
-      toastStore.addToast("Username/password can't be empty")
-      return
-    }
+  }
+
+  // async function register() {
+  //   // console.log("username: ", username.value)
+  //   // console.log("password: ", password.value)
+  //   // console.log("verifyPassword: ", verifyPassword.value)
     
-    if (verifyPassword.value.length == 0) {
-      toastStore.addToast("Please verify your password")
-      return
-    }
+  //   // If user didn't enter username or password, send error toast
+  //   if (username.value.length == 0 || password.value.length == 0) {
+  //     toastStore.addToast("Username/password can't be empty")
+  //     return
+  //   }
     
-    if (verifyPassword.value != password.value) {
-      toastStore.addToast("Your password verification is incorrect")
-      return
-    }
+  //   if (verifyPassword.value.length == 0) {
+  //     toastStore.addToast("Please verify your password")
+  //     return
+  //   }
+    
+  //   if (verifyPassword.value != password.value) {
+  //     toastStore.addToast("Your password verification is incorrect")
+  //     return
+  //   }
     
     
-    let response = await $emailPasswordRegister(username.value, password.value)
-    // console.log(response.status)
-    if (response.status <= 299) {
-      console.log("Registration Success")
-      navigateTo("/workbench")
+  //   let response = await $emailPasswordRegister(username.value, password.value)
+  //   // console.log(response.status)
+  //   if (response.status <= 299) {
+  //     console.log("Registration Success")
+  //     navigateTo("/workbench")
       
-    } else {
-      // Show toaster if register failed
-      console.log("Registration failed")
-      toastStore.addToast(response.content.message)
-  }
-  }
+  //   } else {
+  //     // Show toaster if register failed
+  //     console.log("Registration failed")
+  //     toastStore.addToast(response.content.message)
+  //   }
+  // }
 
 </script>
 

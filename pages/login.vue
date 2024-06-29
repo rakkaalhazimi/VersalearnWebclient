@@ -6,30 +6,33 @@ let password = ref("")
 
 let toastStore = useToastStore()
 
-
 async function login() {
-  // console.log("username: ", username.value)
-  // console.log("password: ", password.value)
   
-  // If user didn't enter username or password, send error toast
-  if (username.value.length == 0 || password.value.length == 0) {
-    toastStore.addToast("Username/password can't be empty")
-    return
-  }
-  
-  let response = await $emailPasswordLogin(username.value, password.value)
-  
-  // console.log(response.status)
-  if (response.status <= 299) {
-    console.log("Login Success")
-    navigateTo("/workbench")
-    
-  } else {
-    // Show toaster if login failed
-    console.log("Login failed")
-    toastStore.addToast("Invalid username/password")
-  }
 }
+
+// async function login() {
+//   // console.log("username: ", username.value)
+//   // console.log("password: ", password.value)
+  
+//   // If user didn't enter username or password, send error toast
+//   if (username.value.length == 0 || password.value.length == 0) {
+//     toastStore.addToast("Username/password can't be empty")
+//     return
+//   }
+  
+//   let response = await $emailPasswordLogin(username.value, password.value)
+  
+//   // console.log(response.status)
+//   if (response.status <= 299) {
+//     console.log("Login Success")
+//     navigateTo("/workbench")
+    
+//   } else {
+//     // Show toaster if login failed
+//     console.log("Login failed")
+//     toastStore.addToast("Invalid username/password")
+//   }
+// }
 </script>
 
 
