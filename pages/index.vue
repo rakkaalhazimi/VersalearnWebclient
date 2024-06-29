@@ -1,6 +1,6 @@
 <script setup>
   // const { isLogin } = useAuthStore();
-  let isLogin = 'true';
+  let isLogin = true;
 </script>
 
 <template>
@@ -17,7 +17,7 @@
     </template>
 
     <template v-slot:right>
-      <Profile v-if="isLogin == 'true'"></Profile>
+      <Profile v-if="isLogin"></Profile>
       <NavbarLink v-else link="/login">Login</NavbarLink>
     </template>
 
