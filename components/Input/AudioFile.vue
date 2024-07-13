@@ -1,17 +1,28 @@
 <script setup>
+  let inputFile = ref(null);
   let isAudioLoaded = ref(false);
   let audioUrl = ref("");
   let filename = ref("");
+  
+  function updateAudioFile(file) {
+    filename.value = file.name;
+    isAudioLoaded.value = true;
+    audioUrl.value = URL.createObjectURL(file);
+  }
 
   function uploadAudio(event) {
     // console.log("Uploaded");
     let file = event.target.files[0];
-    filename.value = file.name;
-    isAudioLoaded.value = true;
-    
-    let url = URL.createObjectURL(file);
-    audioUrl.value = url;
+    updateAudioFile(file);
   }
+  
+  // Check if the file is loaded
+  onMounted(() => {
+    if (inputFile.value.files) {
+      let file = inputFile.value.files[0];
+      updateAudioFile(file);
+    }
+  })
 </script>
 
 <template>
@@ -28,5 +39,6 @@
           file:text-gray-50" 
     type="file"
     @input="uploadAudio"
+    ref="inputFile"
   >
 </template>
