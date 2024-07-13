@@ -1,10 +1,12 @@
 <script setup>
   let isAudioLoaded = ref(false);
   let audioUrl = ref("");
+  let filename = ref("");
 
   function uploadAudio(event) {
     // console.log("Uploaded");
     let file = event.target.files[0];
+    filename.value = file.name;
     isAudioLoaded.value = true;
     
     let url = URL.createObjectURL(file);
@@ -14,7 +16,7 @@
 
 <template>
   <!-- Audio Player -->
-  <InputAudioPlayer v-if="isAudioLoaded" :url="audioUrl" />
+  <InputAudioPlayer v-if="isAudioLoaded" :url="audioUrl" :filename="filename"/>
   
   <!-- Audio File Upload Form -->
   <input 
