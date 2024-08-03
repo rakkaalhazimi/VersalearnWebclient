@@ -4,8 +4,18 @@
 
 
 :root {
+    /* sky-500 */
+    --primary-color: #0ea5e9;
+    /* emerald-500 */
+    --secondary-color: #10b981;
+    /* pink-500 */
+    --tertiary-color: #f43f5e;
+    
     --max-screen-width: 80rem;
     --navbar-height: 4rem;
+    
+    --thumb-width: 1rem;
+    --thumb-height: 1rem;
 }
 
 
